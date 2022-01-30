@@ -1,7 +1,6 @@
 ﻿namespace RuleEngine.Domain
 {
-    public class Class1
+    public abstract class Result
     {
-
     }
 }
