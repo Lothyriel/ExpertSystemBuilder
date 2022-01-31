@@ -2,7 +2,7 @@
 {
     public class NumericValue : Value<double>
     {
-        public override double CurrentValue { get; }
+        public override double CurrentValue { get; set; }
 
         public NumericValue(double value)
         {

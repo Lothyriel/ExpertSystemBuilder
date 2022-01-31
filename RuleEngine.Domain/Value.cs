@@ -6,7 +6,7 @@
 
     public abstract class Value<T> : Value
     {
-        public abstract T CurrentValue { get; }
+        public abstract T CurrentValue { get; set; }
         protected abstract bool Evaluate(OperatorType operatorTypeValue, Value<T> value);
         public abstract bool Equals(Value<T> v2);
         public abstract bool NotEquals(Value<T> v2);

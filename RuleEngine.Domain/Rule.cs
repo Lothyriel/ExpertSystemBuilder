@@ -13,7 +13,7 @@
     }
     public class Rule<T> : Rule where T : struct
     {
-        public Rule(Value<T> variable, OperatorType operatorType, Value<T> targetValue, Objective result) : base(variable)
+        public Rule(Value<T> variable, OperatorType operatorType, Value<T> targetValue, Result result) : base(variable)
         {
             Variable = variable;
             Operator = operatorType;
@@ -27,7 +27,7 @@
 
         public Value<T> TargetValue { get; }
 
-        public override Objective Result { get; }
+        public override Result Result { get; }
 
         public override bool? IsMet() 
         {

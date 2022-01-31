@@ -1,8 +1,8 @@
 ﻿namespace RuleEngine.Domain
 {
-    public class Objective : Result
+    public class Conclusion : Result
     {
-        public Objective(string message)
+        public Conclusion(string message)
         {
             Message = message;
         }

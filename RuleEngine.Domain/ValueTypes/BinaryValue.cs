@@ -2,7 +2,7 @@
 {
     public class BinaryValue : Value<bool>
     {
-        public override bool CurrentValue { get; }
+        public override bool CurrentValue { get; set; }
 
         public BinaryValue(bool currentValue)
         {

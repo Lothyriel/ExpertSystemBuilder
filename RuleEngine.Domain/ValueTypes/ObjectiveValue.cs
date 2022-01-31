@@ -2,7 +2,7 @@
 {
     public class ObjectiveValue : Value<string>
     {
-        public override string CurrentValue { get; }
+        public override string CurrentValue { get; set; }
         private Dictionary<string, string> PossibleValues { get; }
 
         public ObjectiveValue(string actualValue, Dictionary<string, string> possibleValues)
