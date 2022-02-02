@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WindowsForms.ExpertSystemForms
 {
-    public partial class ESCreate : Form
+    public partial class RuleCreate : Form
     {
-        public ESCreate()
+        public RuleCreate()
         {
             InitializeComponent();
         }

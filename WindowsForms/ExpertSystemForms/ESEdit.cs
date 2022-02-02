@@ -13,12 +13,18 @@ namespace WindowsForms.ExpertSystemForms
 {
     public partial class ESEdit : Form
     {
-        public ESEdit(ExpertSystem expertSystem)
+        public ESEdit(ExpertSystem? expertSystem = null)
         {
+            expertSystem ??= new ExpertSystem();
             InitializeComponent();
             ExpertSystem = expertSystem;
         }
 
         private ExpertSystem ExpertSystem { get; }
+
+        private void bt_AddRule_Click(object sender, EventArgs e)
+        {
+            new RuleCreate().Show();
+        }
     }
 }

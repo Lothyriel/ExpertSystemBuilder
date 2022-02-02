@@ -82,25 +82,25 @@ namespace Tests.Domain
         [Test]
         public void ShouldDeriveAndResultSimleConclusion()
         {
-            var targetValue = new NumericValue(50);
-            var action = new ActionResult<double>(variable, targetValue);
+            //var targetValue = new NumericValue(50);
+            //var action = new ActionResult<double>(variable, targetValue);
 
-            var conclusion = new Conclusion("it's easy when you big in japan");
+            //var conclusion = new Conclusion("it's easy when you big in japan");
 
-            var rules = new List<Rule>
-            {
-                new Rule<double>(null, OperatorType.Equals, targetValue, conclusion),
-                new Rule<double>(null, OperatorType.Lesser, targetValue, action)
-            };
+            //var rules = new List<Rule>
+            //{
+            //    new Rule<double>(null, OperatorType.Equals, targetValue, conclusion),
+            //    new Rule<double>(null, OperatorType.Lesser, targetValue, action)
+            //};
 
-            var variables = new List<Value>
-            {
-                variable,
-            };
+            //var variables = new List<Value>
+            //{
+            //    variable,
+            //};
 
-            var es = new ExpertSystem(variables, rules);
+            //var es = new ExpertSystem(variables, rules);
 
-            es.Result().Should().Be(conclusion);
+            //es.Result().Should().Be(conclusion);
         }
     }
 }
