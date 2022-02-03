@@ -7,9 +7,9 @@
             Rules = rules.ToDictionary(rule => rule, rule => false);
             Variables = variables;
         }
-        private List<Value> Variables { get; }
+        public List<Value> Variables { get; }
 
-        private Dictionary<Rule, bool> Rules { get; }
+        public Dictionary<Rule, bool> Rules { get; }
 
         public Conclusion Result()
         {

@@ -32,6 +32,8 @@
             this.lb_Rules = new System.Windows.Forms.ListBox();
             this.bt_AddRule = new System.Windows.Forms.Button();
             this.bt_AddVariable = new System.Windows.Forms.Button();
+            this.lab_Variables = new System.Windows.Forms.Label();
+            this.lab_Rules = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lb_Variables
@@ -70,12 +72,33 @@
             this.bt_AddVariable.TabIndex = 3;
             this.bt_AddVariable.Text = "+";
             this.bt_AddVariable.UseVisualStyleBackColor = true;
+            this.bt_AddVariable.Click += new System.EventHandler(this.bt_AddVariable_Click);
+            // 
+            // lab_Variables
+            // 
+            this.lab_Variables.AutoSize = true;
+            this.lab_Variables.Location = new System.Drawing.Point(45, 9);
+            this.lab_Variables.Name = "lab_Variables";
+            this.lab_Variables.Size = new System.Drawing.Size(69, 20);
+            this.lab_Variables.TabIndex = 4;
+            this.lab_Variables.Text = "Variables";
+            // 
+            // lab_Rules
+            // 
+            this.lab_Rules.AutoSize = true;
+            this.lab_Rules.Location = new System.Drawing.Point(259, 9);
+            this.lab_Rules.Name = "lab_Rules";
+            this.lab_Rules.Size = new System.Drawing.Size(44, 20);
+            this.lab_Rules.TabIndex = 5;
+            this.lab_Rules.Text = "Rules";
             // 
             // ESEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(568, 309);
+            this.Controls.Add(this.lab_Rules);
+            this.Controls.Add(this.lab_Variables);
             this.Controls.Add(this.bt_AddVariable);
             this.Controls.Add(this.bt_AddRule);
             this.Controls.Add(this.lb_Rules);
@@ -83,6 +106,7 @@
             this.Name = "ESEdit";
             this.Text = "ES";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -92,5 +116,7 @@
         private ListBox lb_Rules;
         private Button bt_AddRule;
         private Button bt_AddVariable;
+        private Label lab_Variables;
+        private Label lab_Rules;
     }
 }

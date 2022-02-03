@@ -14,17 +14,11 @@ namespace WindowsForms
             bt_RunSystem.Enabled = false;
         }
 
-        private void ShowForm(Form form)
-        {
-            form.Show();
-            Hide();
-        }
-
         #region Events
 
         private void bt_RunSystem_Click(object sender, EventArgs e)
         {
-            ShowForm(new ESRun((ExpertSystem)lb_ExpertSystems.SelectedItem));
+            MainScreen.Instance!.OpenFormPanel(new ESRun((ExpertSystem)lb_ExpertSystems.SelectedItem));
         }
 
         private void lb_ExpertSystems_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -32,7 +26,7 @@ namespace WindowsForms
             int index = lb_ExpertSystems.IndexFromPoint(e.Location);
             if (index != ListBox.NoMatches)
             {
-                ShowForm(new ESEdit((ExpertSystem)lb_ExpertSystems.SelectedItem));
+                MainScreen.Instance!.OpenFormPanel(new ESEdit(new ESBuilder((ExpertSystem)lb_ExpertSystems.SelectedItem)));
             }
         }
 
@@ -46,7 +40,7 @@ namespace WindowsForms
 
         private void bt_CreateSystem_Click(object sender, EventArgs e)
         {
-            ShowForm(new ESCreate());
+            MainScreen.Instance!.OpenFormPanel(new ESEdit(new ESBuilder()));
         }
 
         #endregion

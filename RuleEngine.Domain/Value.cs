@@ -4,14 +4,38 @@ namespace RuleEngine.Domain
 {
     public abstract class Value
     {
-        public static Value? CreateValue(VariableType type, string text, HashSet<string>? objectiveValues = null)
+        public abstract string Name { get; }
+
+        public abstract VariableType Type { get; }
+
+        public static Value? CreateValue(VariableType type, string name, string value, HashSet<string> objectiveValues)
+        {
+            if (name == "")
+                return null;
+
+            if (!Valid(type, value, objectiveValues))
+                return null;
+
+            if (type == VariableType.Objective && !objectiveValues.TryGetValue(name, out _))
+                return null;
+
+            return type switch
+            {
+                VariableType.Binary => new BinaryValue(name, value == "" ? null : bool.Parse(value)),
+                VariableType.Objective => new ObjectiveValue(name, value, objectiveValues!),
+                VariableType.Numeric => new NumericValue(name, value == "" ? null : double.Parse(value)),
+                _ => throw new EnumException(type),
+            };
+        }
+
+        private static bool Valid(VariableType type, string value, HashSet<string> objectiveValues)
         {
             return type switch
             {
-                VariableType.Binary => new BinaryValue(text == "" ? null : bool.Parse(text)),
-                VariableType.Objective => new ObjectiveValue(text, objectiveValues!),
-                VariableType.Numeric => new NumericValue(text == "" ? null : double.Parse(text)),
-                _ => throw new Exception("Erro muito fatal este Enum nem existe")
+                VariableType.Binary => bool.TryParse(value, out _),
+                VariableType.Objective => objectiveValues.TryGetValue(value, out _),
+                VariableType.Numeric => double.TryParse(value, out _),
+                _ => throw new EnumException(type),
             };
         }
     }
@@ -30,6 +54,10 @@ namespace RuleEngine.Domain
                 OperatorType.NotEquals => NotEquals(value),
                 _ => Evaluate(operatorTypeValue, value),
             };
+        }
+        public override string ToString()
+        {
+            return $"{Name}: {CurrentValue}";
         }
     }
     public enum OperatorType

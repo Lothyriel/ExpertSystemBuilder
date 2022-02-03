@@ -1,30 +1,30 @@
-﻿using RuleEngine.Domain;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace WindowsForms.ExpertSystemForms
+﻿namespace WindowsForms.ExpertSystemForms
 {
     public partial class ESEdit : Form
     {
-        public ESEdit(ExpertSystem? expertSystem = null)
+        public ESEdit(ESBuilder eSBuilder)
         {
-            expertSystem ??= new ExpertSystem();
             InitializeComponent();
-            ExpertSystem = expertSystem;
+            ESBuilder = eSBuilder;
+            lb_Rules.DataSource = eSBuilder.Rules;
+            lb_Variables.DataSource = eSBuilder.Variables;
         }
 
-        private ExpertSystem ExpertSystem { get; }
+        public ESBuilder ESBuilder { get; }
 
         private void bt_AddRule_Click(object sender, EventArgs e)
         {
-            new RuleCreate().Show();
+            if (!ESBuilder.Variables.Any())
+            {
+                MessageBox.Show($"You need at least a variable to create a new Rule", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MainScreen.Instance!.OpenFormPanel(new RuleCreate(ESBuilder));
+        }
+
+        private void bt_AddVariable_Click(object sender, EventArgs e)
+        {
+            MainScreen.Instance!.OpenFormPanel(new VariableCreate(ESBuilder));
         }
     }
 }

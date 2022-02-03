@@ -36,6 +36,7 @@
             this.lb_ObjectiveValues = new System.Windows.Forms.ListBox();
             this.bt_AddObjectiveValue = new System.Windows.Forms.Button();
             this.bt_RemoveObjectiveValue = new System.Windows.Forms.Button();
+            this.lb_Value = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // bt_Create
@@ -50,16 +51,18 @@
             // 
             // cb_Type
             // 
+            this.cb_Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_Type.FormattingEnabled = true;
             this.cb_Type.Location = new System.Drawing.Point(42, 79);
             this.cb_Type.Name = "cb_Type";
-            this.cb_Type.Size = new System.Drawing.Size(151, 28);
+            this.cb_Type.Size = new System.Drawing.Size(192, 28);
             this.cb_Type.TabIndex = 1;
+            this.cb_Type.SelectedValueChanged += new System.EventHandler(this.cb_Type_SelectedValueChanged);
             // 
             // lb_Name
             // 
             this.lb_Name.AutoSize = true;
-            this.lb_Name.Location = new System.Drawing.Point(51, 25);
+            this.lb_Name.Location = new System.Drawing.Point(42, 28);
             this.lb_Name.Name = "lb_Name";
             this.lb_Name.Size = new System.Drawing.Size(52, 20);
             this.lb_Name.TabIndex = 2;
@@ -74,9 +77,9 @@
             // 
             // tb_Value
             // 
-            this.tb_Value.Location = new System.Drawing.Point(42, 131);
+            this.tb_Value.Location = new System.Drawing.Point(109, 125);
             this.tb_Value.Name = "tb_Value";
-            this.tb_Value.Size = new System.Drawing.Size(151, 27);
+            this.tb_Value.Size = new System.Drawing.Size(125, 27);
             this.tb_Value.TabIndex = 4;
             // 
             // lb_ObjectiveValues
@@ -109,11 +112,21 @@
             this.bt_RemoveObjectiveValue.Text = "-";
             this.bt_RemoveObjectiveValue.UseVisualStyleBackColor = true;
             // 
+            // lb_Value
+            // 
+            this.lb_Value.AutoSize = true;
+            this.lb_Value.Location = new System.Drawing.Point(42, 132);
+            this.lb_Value.Name = "lb_Value";
+            this.lb_Value.Size = new System.Drawing.Size(48, 20);
+            this.lb_Value.TabIndex = 8;
+            this.lb_Value.Text = "Value:";
+            // 
             // VariableCreate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(505, 296);
+            this.Controls.Add(this.lb_Value);
             this.Controls.Add(this.bt_RemoveObjectiveValue);
             this.Controls.Add(this.bt_AddObjectiveValue);
             this.Controls.Add(this.lb_ObjectiveValues);
@@ -139,5 +152,6 @@
         private ListBox lb_ObjectiveValues;
         private Button bt_AddObjectiveValue;
         private Button bt_RemoveObjectiveValue;
+        private Label lb_Value;
     }
 }

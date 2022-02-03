@@ -2,10 +2,13 @@
 {
     public class NumericValue : Value<double?>
     {
+        public override string Name { get; }
         public override double? CurrentValue { get; set; }
+        public override VariableType Type => VariableType.Numeric;
 
-        public NumericValue(double? value)
+        public NumericValue(string name, double? value)
         {
+            Name = name;
             CurrentValue = value;
         }
 
@@ -49,11 +52,6 @@
                 OperatorType.GreaterOrEquals => GreaterOrEquals(value),
                 _ => throw new Exception($"Invalid enum value exception {operatorTypeValue}"),
             };
-        }
-
-        public override string ToString()
-        {
-            return $"{CurrentValue}";
         }
     }
 }

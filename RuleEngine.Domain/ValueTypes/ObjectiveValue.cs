@@ -2,11 +2,15 @@
 {
     public class ObjectiveValue : Value<string?>
     {
+        public override string Name { get; }
         public override string? CurrentValue { get; set; }
-        private HashSet<string?> PossibleValues { get; }
+        public HashSet<string> PossibleValues { get; }
+        public override VariableType Type => VariableType.Objective;
 
-        public ObjectiveValue(string? actualValue, HashSet<string?> possibleValues)
+
+        public ObjectiveValue(string name, string? actualValue, HashSet<string> possibleValues)
         {
+            Name = name;
             CurrentValue = actualValue;
             PossibleValues = possibleValues;
         }

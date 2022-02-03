@@ -5,21 +5,21 @@ namespace WindowsForms.ExpertSystemForms
     public partial class VariableCreate : Form
     {
         private HashSet<string> ObjectiveValues { get; } = new();
-        private List<Value> Variables { get; }
+        private ESBuilder ESBuilder { get; }
 
-        public VariableCreate(List<Value> variables)
+        public VariableCreate(ESBuilder eSBuilder)
         {
             InitializeComponent();
-            for (VariableType i = VariableType.Numeric; i < VariableType.Objective; i++)
-            {
-                cb_Type.Items.Add(i);
-            }
+            cb_Type.Items.Add(VariableType.Numeric);
+            cb_Type.Items.Add(VariableType.Binary);
+            cb_Type.Items.Add(VariableType.Objective);
+            cb_Type.SelectedIndex = 0;
 
-            Variables = variables;
-            HideObjectiveValues();
+            ESBuilder = eSBuilder;
+            ChangeObjectiveValuesVisibility(false);
         }
 
-        private void HideObjectiveValues()
+        private void ChangeObjectiveValuesVisibility(bool visible)
         {
             var tagControls = new List<Control>();
             foreach (Control control in Controls)
@@ -27,18 +27,24 @@ namespace WindowsForms.ExpertSystemForms
                 if ((string)control.Tag == "ObjectiveValue")
                     tagControls.Add(control);
             }
-            tagControls.ForEach(control => control.Visible = false);
+            tagControls.ForEach(control => control.Visible = visible);
         }
 
         private void bt_Create_Click(object sender, EventArgs e)
         {
-            var variable = Value.CreateValue((VariableType)cb_Type.SelectedItem, tb_Value.Text, ObjectiveValues);
+            var variable = Value.CreateValue((VariableType)cb_Type.SelectedItem, tb_Name.Text, tb_Value.Text, ObjectiveValues);
             if (variable == null)
             {
-                MessageBox.Show("Valores inválidos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utils.InvalidValueTypeMessage((VariableType)cb_Type.SelectedItem);
                 return;
             }
-            Variables.Add(variable);
+            ESBuilder.Variables.Add(variable);
+            MainScreen.Instance!.OpenFormPanel(new ESEdit(ESBuilder));
+        }
+
+        private void cb_Type_SelectedValueChanged(object sender, EventArgs e)
+        {
+            ChangeObjectiveValuesVisibility(cb_Type.SelectedItem is VariableType.Objective);
         }
     }
 }

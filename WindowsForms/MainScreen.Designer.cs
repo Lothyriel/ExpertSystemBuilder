@@ -46,7 +46,9 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.Panel);
             this.Name = "MainScreen";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainScreen";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainScreen_FormClosing);
             this.ResumeLayout(false);
 
         }

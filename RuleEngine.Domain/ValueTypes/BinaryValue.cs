@@ -2,10 +2,13 @@
 {
     public class BinaryValue : Value<bool?>
     {
+        public override string Name { get; }
         public override bool? CurrentValue { get; set; }
+        public override VariableType Type => VariableType.Binary;
 
-        public BinaryValue(bool? currentValue)
+        public BinaryValue(string name, bool? currentValue)
         {
+            Name = name;
             CurrentValue = currentValue;
         }
 
