@@ -1,4 +1,4 @@
-﻿namespace RuleEngine.Domain
+﻿namespace RuleEngine.Domain.Results
 {
     public interface IActionResult
     {

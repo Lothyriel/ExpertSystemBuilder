@@ -42,21 +42,21 @@
             this.lb_Variables.ItemHeight = 20;
             this.lb_Variables.Location = new System.Drawing.Point(45, 42);
             this.lb_Variables.Name = "lb_Variables";
-            this.lb_Variables.Size = new System.Drawing.Size(150, 104);
+            this.lb_Variables.Size = new System.Drawing.Size(208, 104);
             this.lb_Variables.TabIndex = 0;
             // 
             // lb_Rules
             // 
             this.lb_Rules.FormattingEnabled = true;
             this.lb_Rules.ItemHeight = 20;
-            this.lb_Rules.Location = new System.Drawing.Point(259, 42);
+            this.lb_Rules.Location = new System.Drawing.Point(315, 42);
             this.lb_Rules.Name = "lb_Rules";
-            this.lb_Rules.Size = new System.Drawing.Size(150, 104);
+            this.lb_Rules.Size = new System.Drawing.Size(217, 104);
             this.lb_Rules.TabIndex = 1;
             // 
             // bt_AddRule
             // 
-            this.bt_AddRule.Location = new System.Drawing.Point(374, 152);
+            this.bt_AddRule.Location = new System.Drawing.Point(497, 152);
             this.bt_AddRule.Name = "bt_AddRule";
             this.bt_AddRule.Size = new System.Drawing.Size(35, 29);
             this.bt_AddRule.TabIndex = 2;
@@ -86,7 +86,7 @@
             // lab_Rules
             // 
             this.lab_Rules.AutoSize = true;
-            this.lab_Rules.Location = new System.Drawing.Point(259, 9);
+            this.lab_Rules.Location = new System.Drawing.Point(488, 9);
             this.lab_Rules.Name = "lab_Rules";
             this.lab_Rules.Size = new System.Drawing.Size(44, 20);
             this.lab_Rules.TabIndex = 5;

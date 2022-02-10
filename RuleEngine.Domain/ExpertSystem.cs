@@ -1,39 +1,40 @@
-﻿namespace RuleEngine.Domain
+﻿using RuleEngine.Domain.Exceptions;
+using RuleEngine.Domain.Results;
+using RuleEngine.Domain.Rules;
+using RuleEngine.Domain.ValueTypes;
+
+namespace RuleEngine.Domain
 {
     public class ExpertSystem
     {
-        public ExpertSystem(List<Value> variables, List<Rule> rules)
+        public ExpertSystem(List<ValueBase> variables, List<IRule> rules)
         {
+            Variables = variables.ToDictionary(variable => variable.Name, v => v);
             Rules = rules.ToDictionary(rule => rule, rule => false);
-            Variables = variables;
         }
-        public List<Value> Variables { get; }
-
-        public Dictionary<Rule, bool> Rules { get; }
+        public Dictionary<string, ValueBase> Variables { get; }
+        public Dictionary<IRule, bool> Rules { get; }
 
         public Conclusion Result()
         {
-            var rules = NotMetRules();
-
-            while (rules.Any())
+            List<IRule> nextRules;
+            while ((nextRules = RulesMet()).Any())
             {
-                foreach (var rule in rules)
+                foreach (var rule in nextRules)
                 {
-                    if (rule.IsMet() == true)
-                    {
-                        Rules[rule] = true;
-                        if (rule.Result is IActionResult action)
-                            action.Act();
-                        else if (rule.Result is Conclusion obj)
-                            return obj;
-                    }
+                    Rules[rule] = true;
+                    if (rule.Result is IActionResult action)
+                        action.Act();
+                    else if (rule.Result is Conclusion obj)
+                        return obj;
                 }
-                rules = NotMetRules();
             }
-
-            throw new Exception("The system couldn't resolve this problem!");
+            throw new ImpossibleScenario();
         }
 
-        private IEnumerable<Rule> NotMetRules() => Rules.Keys.Where(r => Rules[r] == false);
+        private List<IRule> RulesMet()
+        {
+            return Rules.Keys.Where(r => r.IsMet()).ToList();
+        }
     }
 }

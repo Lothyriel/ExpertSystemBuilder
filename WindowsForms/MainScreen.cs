@@ -2,12 +2,13 @@
 {
     public partial class MainScreen : Form
     {
-        public static MainScreen? Instance { get; set; }
+        public static MainScreen? Instance { get; private set; }
 
-        private List<Form> Forms = new();
+        private List<Form> Forms { get; }
         public MainScreen()
         {
             Instance = this;
+            Forms = new();
             InitializeComponent();
             OpenFormPanel(new ExpertSystemsView());
         }

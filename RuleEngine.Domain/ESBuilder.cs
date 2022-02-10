@@ -1,10 +1,12 @@
 ﻿using RuleEngine.Domain;
+using RuleEngine.Domain.Rules;
+using RuleEngine.Domain.ValueTypes;
 
 namespace WindowsForms
 {
     public class ESBuilder
     {
-        public ESBuilder(List<Rule> rules, List<Value> variables)
+        public ESBuilder(List<IRule> rules, List<ValueBase> variables)
         {
             Rules = rules;
             Variables = variables;
@@ -19,11 +21,11 @@ namespace WindowsForms
         {
             System = system;
             Rules = system.Rules.Keys.ToList();
-            Variables = system.Variables;
+            Variables = system.Variables.Values.ToList();
         }
 
-        public List<Rule> Rules { get; }
-        public List<Value> Variables { get; }
+        public List<IRule> Rules { get; }
+        public List<ValueBase> Variables { get; }
         public ExpertSystem? System { get; }
 
         public ExpertSystem Build() { return new ExpertSystem(Variables, Rules); }

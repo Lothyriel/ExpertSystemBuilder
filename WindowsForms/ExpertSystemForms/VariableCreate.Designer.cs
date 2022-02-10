@@ -37,6 +37,9 @@
             this.bt_AddObjectiveValue = new System.Windows.Forms.Button();
             this.bt_RemoveObjectiveValue = new System.Windows.Forms.Button();
             this.lb_Value = new System.Windows.Forms.Label();
+            this.cb_ObjectiveValues = new System.Windows.Forms.ComboBox();
+            this.tb_ObjectiveNewValue = new System.Windows.Forms.TextBox();
+            this.cb_UserInputable = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // bt_Create
@@ -88,9 +91,10 @@
             this.lb_ObjectiveValues.ItemHeight = 20;
             this.lb_ObjectiveValues.Location = new System.Drawing.Point(272, 25);
             this.lb_ObjectiveValues.Name = "lb_ObjectiveValues";
-            this.lb_ObjectiveValues.Size = new System.Drawing.Size(150, 104);
+            this.lb_ObjectiveValues.Size = new System.Drawing.Size(193, 104);
             this.lb_ObjectiveValues.TabIndex = 5;
             this.lb_ObjectiveValues.Tag = "ObjectiveValue";
+            this.lb_ObjectiveValues.SelectedValueChanged += new System.EventHandler(this.lb_ObjectiveValues_SelectedValueChanged);
             // 
             // bt_AddObjectiveValue
             // 
@@ -101,16 +105,18 @@
             this.bt_AddObjectiveValue.Tag = "ObjectiveValue";
             this.bt_AddObjectiveValue.Text = "+";
             this.bt_AddObjectiveValue.UseVisualStyleBackColor = true;
+            this.bt_AddObjectiveValue.Click += new System.EventHandler(this.bt_AddObjectiveValue_Click);
             // 
             // bt_RemoveObjectiveValue
             // 
-            this.bt_RemoveObjectiveValue.Location = new System.Drawing.Point(389, 145);
+            this.bt_RemoveObjectiveValue.Location = new System.Drawing.Point(432, 145);
             this.bt_RemoveObjectiveValue.Name = "bt_RemoveObjectiveValue";
             this.bt_RemoveObjectiveValue.Size = new System.Drawing.Size(33, 29);
             this.bt_RemoveObjectiveValue.TabIndex = 7;
             this.bt_RemoveObjectiveValue.Tag = "ObjectiveValue";
             this.bt_RemoveObjectiveValue.Text = "-";
             this.bt_RemoveObjectiveValue.UseVisualStyleBackColor = true;
+            this.bt_RemoveObjectiveValue.Click += new System.EventHandler(this.bt_RemoveObjectiveValue_Click);
             // 
             // lb_Value
             // 
@@ -121,11 +127,44 @@
             this.lb_Value.TabIndex = 8;
             this.lb_Value.Text = "Value:";
             // 
+            // cb_ObjectiveValues
+            // 
+            this.cb_ObjectiveValues.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_ObjectiveValues.FormattingEnabled = true;
+            this.cb_ObjectiveValues.Location = new System.Drawing.Point(109, 125);
+            this.cb_ObjectiveValues.Name = "cb_ObjectiveValues";
+            this.cb_ObjectiveValues.Size = new System.Drawing.Size(125, 28);
+            this.cb_ObjectiveValues.TabIndex = 9;
+            this.cb_ObjectiveValues.Tag = "ObjectiveValue";
+            // 
+            // tb_ObjectiveNewValue
+            // 
+            this.tb_ObjectiveNewValue.AcceptsReturn = true;
+            this.tb_ObjectiveNewValue.Location = new System.Drawing.Point(311, 147);
+            this.tb_ObjectiveNewValue.Name = "tb_ObjectiveNewValue";
+            this.tb_ObjectiveNewValue.Size = new System.Drawing.Size(114, 27);
+            this.tb_ObjectiveNewValue.TabIndex = 10;
+            this.tb_ObjectiveNewValue.Tag = "ObjectiveValue";
+            this.tb_ObjectiveNewValue.TextChanged += new System.EventHandler(this.tb_ObjectivNewValue_TextChanged);
+            // 
+            // cb_UserInputable
+            // 
+            this.cb_UserInputable.AutoSize = true;
+            this.cb_UserInputable.Location = new System.Drawing.Point(158, 208);
+            this.cb_UserInputable.Name = "cb_UserInputable";
+            this.cb_UserInputable.Size = new System.Drawing.Size(127, 24);
+            this.cb_UserInputable.TabIndex = 11;
+            this.cb_UserInputable.Text = "User Inputable";
+            this.cb_UserInputable.UseVisualStyleBackColor = true;
+            // 
             // VariableCreate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(505, 296);
+            this.Controls.Add(this.cb_UserInputable);
+            this.Controls.Add(this.tb_ObjectiveNewValue);
+            this.Controls.Add(this.cb_ObjectiveValues);
             this.Controls.Add(this.lb_Value);
             this.Controls.Add(this.bt_RemoveObjectiveValue);
             this.Controls.Add(this.bt_AddObjectiveValue);
@@ -153,5 +192,8 @@
         private Button bt_AddObjectiveValue;
         private Button bt_RemoveObjectiveValue;
         private Label lb_Value;
+        private ComboBox cb_ObjectiveValues;
+        private TextBox tb_ObjectiveNewValue;
+        private CheckBox cb_UserInputable;
     }
 }

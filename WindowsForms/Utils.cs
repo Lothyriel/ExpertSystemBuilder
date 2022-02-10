@@ -1,13 +1,13 @@
 ﻿using RuleEngine.Domain;
-using static System.Windows.Forms.Control;
+using RuleEngine.Domain.ValueTypes;
 
 namespace WindowsForms
 {
     public class Utils
     {
-        public static void InvalidValueTypeMessage(VariableType variableType)
+        public static void ShowErrorMessage(string message)
         {
-            MessageBox.Show($"Invalid value for the type {variableType}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

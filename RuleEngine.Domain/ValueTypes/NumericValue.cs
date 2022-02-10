@@ -6,43 +6,58 @@
         public override double? CurrentValue { get; set; }
         public override VariableType Type => VariableType.Numeric;
 
-        public NumericValue(string name, double? value)
+        public override bool UserInputable { get; }
+
+        public NumericValue(string name, double? value, bool userInputable = true)
         {
             Name = name;
             CurrentValue = value;
+            UserInputable = userInputable;
         }
 
-        public override bool Equals(Value<double?> v2)
+        public override bool Equals(double? v2)
         {
-            return CurrentValue == v2.CurrentValue;
+            return CurrentValue == v2;
         }
 
-        public override bool NotEquals(Value<double?> v2)
+        public override bool NotEquals(double? v2)
         {
-            return CurrentValue != v2.CurrentValue;
+            return CurrentValue != v2;
         }
 
-        public bool Greater(Value<double?> v2)
+        public bool Greater(double? v2)
         {
-            return CurrentValue > v2.CurrentValue;
+            return CurrentValue > v2;
         }
 
-        public bool Lesser(Value<double?> v2)
+        public bool Lesser(double? v2)
         {
-            return CurrentValue < v2.CurrentValue;
+            return CurrentValue < v2;
         }
 
-        public bool GreaterOrEquals(Value<double?> v2)
+        public static (NumericValue?, string) Valid(string name, string value, bool userInputable)
         {
-            return CurrentValue >= v2.CurrentValue;
+            var isNumber = double.TryParse(value, out double doubleValue);
+            if (value != "" && !isNumber)
+            {
+                return (null, "Value is not a number");
+            }
+
+            double? currentValue = isNumber ? doubleValue : null;
+            return (new NumericValue(name, currentValue, userInputable), "OK");
         }
 
-        public bool LesserOrEquals(Value<double?> v2)
+        public bool GreaterOrEquals(double? v2)
         {
-            return CurrentValue <= v2.CurrentValue;
+            return CurrentValue >= v2;
         }
 
-        protected override bool Evaluate(OperatorType operatorTypeValue, Value<double?> value) 
+        public bool LesserOrEquals(double? v2)
+        {
+            return CurrentValue <= v2;
+        }
+
+        protected override bool EvaluateFurther(OperatorType operatorTypeValue, double? value)
         {
             return operatorTypeValue switch
             {

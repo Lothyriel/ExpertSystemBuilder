@@ -1,4 +1,4 @@
-﻿namespace RuleEngine.Domain
+﻿namespace RuleEngine.Domain.Results
 {
     public class Conclusion : Result
     {

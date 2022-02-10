@@ -1,19 +1,21 @@
-﻿namespace RuleEngine.Domain
+﻿using RuleEngine.Domain.ValueTypes;
+
+namespace RuleEngine.Domain.Results
 {
     public class ActionResult<T> : Result, IActionResult
     {
-        public ActionResult(Value<T> variable, Value<T> newValue)
+        public ActionResult(Value<T> variable, T newValue)
         {
             Variable = variable;
             NewValue = newValue;
         }
 
         public Value<T> Variable { get; set; }
-        public Value<T> NewValue { get; }
+        public T NewValue { get; }
 
-        public void Act() 
+        public void Act()
         {
-            Variable.CurrentValue = NewValue.CurrentValue;
+            Variable.CurrentValue = NewValue;
         }
 
         public override string ToString()
